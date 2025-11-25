@@ -1,0 +1,33 @@
+.card.text-center {
+  padding: 50px 0px 50px 0px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: #2b2c36;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.card-title {
+  color: white;
+}
+.card-text {
+  color: white;
+}
+
+.btn.btn-primary {
+  border-radius: 20px;
+}
+
+.btn.btn-primary:hover {
+  background-color: #0907a5;
+  border-color: #0907a5;
+}
+
+.btn.btn-outline-secondary {
+  border-radius: 20px;
+  margin-left: 1%;
+}
+
+.bi.bi-plus-circle {
+  margin-right: 0.5rem;
+}

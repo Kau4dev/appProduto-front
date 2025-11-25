@@ -1,10 +1,10 @@
 .navbar.navbar-expand-lg.bg-body-tertiary {
   padding-top: 0%;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 .container-fluid {
-  background-color: rgb(43, 44, 54);
+  background-color: #2b2c36;
   border-bottom: solid 5px #948e8e;
 }
 
