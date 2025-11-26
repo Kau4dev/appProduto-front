@@ -1,0 +1,42 @@
+.card {
+  background-color: #2b2c36;
+  color: white;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+.card-title {
+  color: #4476d3;
+}
+
+.list-group.list-group-flush {
+  background-color: #2b2c36;
+}
+.list-group-item {
+  background-color: #2b2c36;
+  color: white;
+}
+.bi.bi-currency-dollar {
+  margin-right: 0.1rem;
+  color: gold;
+}
+.bi.bi-tag {
+  margin-right: 0.1rem;
+  color: gold;
+}
+.bi.bi-archive {
+  margin-right: 0.1rem;
+  color: gold;
+}
+
+.btn.btn-primary {
+  border-radius: 20px;
+}
+
+.btn.btn-primary:hover {
+  background-color: #0907a5;
+  border-color: #0907a5;
+}
+.bi.bi-cart-plus {
+  margin: 0.5rem;
+}
