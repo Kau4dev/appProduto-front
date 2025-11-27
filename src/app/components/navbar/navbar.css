@@ -1,7 +1,12 @@
-.navbar.navbar-expand-lg.bg-body-tertiary {
+.navbar.navbar-expand-lg {
   padding-top: 0%;
   padding-left: 2rem;
   padding-right: 2rem;
+}
+img {
+  height: 40px;
+  width: 40px;
+  margin-right: 0.5rem;
 }
 .container-fluid {
   background-color: #2b2c36;
