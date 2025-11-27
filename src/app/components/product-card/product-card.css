@@ -8,20 +8,22 @@
 }
 
 .card {
-  background-color: #2b2c36;
+  background-color: #212529;
   color: white;
   margin-top: 1rem;
+  border: 1px solid #6e6e6e;
 }
 .card-title {
   color: #4476d3;
 }
 
 .list-group.list-group-flush {
-  background-color: #2b2c36;
+  background-color: #212529;
 }
 .list-group-item {
-  background-color: #2b2c36;
+  background-color: #212529;
   color: white;
+  border: 1px solid #6e6e6e;
 }
 .bi.bi-currency-dollar {
   margin-right: 0.1rem;
