@@ -1,21 +1,29 @@
-<div class="card" style="width: 18rem">
-  <img
-    src="https://down-br.img.susercontent.com/file/7b902f6a5316aa5e2bcbc7d343221cc0"
-    class="card-img-top"
-    alt="..."
-  />
-  <div class="card-body">
-    <a href="#" class="card-title">Camiseta Preta</a>
-    <p class="card-text">Camiseta de algodão 100%, confortável e estilosa.</p>
-    <a href="#" class="btn btn-primary"><i class="bi bi-cart-plus"></i>Carrinho</a>
+<div class="cards-container">
+  @for(produto of produtos; track $index) {
+  <div class="card" style="width: 18.7rem">
+    <img
+      src="https://down-br.img.susercontent.com/file/7b902f6a5316aa5e2bcbc7d343221cc0"
+      class="card-img-top"
+      alt="..."
+    />
+    <div class="card-body">
+      <a href="#" class="card-title">{{ produto.nome }}</a>
+      <p class="card-text">{{ produto.descricao }}</p>
+      <a href="#" class="btn btn-primary"><i class="bi bi-cart-plus"></i>Carrinho</a>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <i class="bi bi-currency-dollar"></i>
+        <b>Preço:</b>
+        R$ {{ produto.preco.toFixed(2) }}
+      </li>
+      <li class="list-group-item">
+        <i class="bi bi-tag"></i><b>Desconto:</b> {{ produto.desconto }}%
+      </li>
+      <li class="list-group-item">
+        <i class="bi bi-archive"></i><b>Estoque:</b> {{ produto.estoque }} unidades
+      </li>
+    </ul>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">
-      <i class="bi bi-currency-dollar"></i>
-      <b>Preço:</b>
-      R$ 49,00
-    </li>
-    <li class="list-group-item"><i class="bi bi-tag"></i><b>Desconto:</b> 10%</li>
-    <li class="list-group-item"><i class="bi bi-archive"></i><b>Estoque:</b> 50 unidades</li>
-  </ul>
+  }
 </div>

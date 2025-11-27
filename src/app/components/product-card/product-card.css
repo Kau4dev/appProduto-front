@@ -1,9 +1,16 @@
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  gap: 1rem;
+}
+
 .card {
   background-color: #2b2c36;
   color: white;
   margin-top: 1rem;
-  margin-left: 2rem;
-  margin-right: 2rem;
 }
 .card-title {
   color: #4476d3;
