@@ -13,6 +13,11 @@
   margin-top: 1rem;
   border: 1px solid #6e6e6e;
 }
+.card.disabled {
+  opacity: 0.1;
+  filter: grayscale(2);
+}
+
 .card-title {
   color: #4476d3;
 }

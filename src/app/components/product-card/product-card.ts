@@ -33,19 +33,11 @@ export class ProductCard {
       imagem: 'https://example.com/tenis-esportivo.jpg',
     },
     {
-      nome: 'Jaqueta de Couro',
-      descricao: 'Jaqueta de couro legítimo, estilo e durabilidade.',
-      preco: 350.0,
-      desconto: 25,
-      estoque: 10,
-      imagem: 'https://example.com/jaqueta-couro.jpg',
-    },
-    {
       nome: 'Relógio de Pulso',
       descricao: 'Relógio elegante com design moderno.',
       preco: 500.0,
       desconto: 30,
-      estoque: 15,
+      estoque: 0,
       imagem: 'https://example.com/relogio-pulso.jpg',
     },
   ];
