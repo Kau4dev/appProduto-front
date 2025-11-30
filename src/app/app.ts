@@ -7,7 +7,7 @@ import { NaoEncontrado } from './pages/nao-encontrado/nao-encontrado';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, Footer, Home, NaoEncontrado],
+  imports: [RouterOutlet, Navbar, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
