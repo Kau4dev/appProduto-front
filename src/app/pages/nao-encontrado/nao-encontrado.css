@@ -1,0 +1,12 @@
+div {
+  color: #ffffff;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.nao-encontrado-container {
+  padding: 40px;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 125px auto;
+}
