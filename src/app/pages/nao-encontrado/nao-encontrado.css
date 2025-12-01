@@ -4,6 +4,11 @@ div {
   margin-top: 50px;
 }
 
+a {
+  color: #4476d3;
+  text-decoration: none;
+}
+
 .nao-encontrado-container {
   padding: 40px;
   border-radius: 8px;

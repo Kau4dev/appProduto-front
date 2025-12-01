@@ -5,7 +5,7 @@ import { ProductCard } from '../../components/product-card/product-card';
 
 @Component({
   selector: 'app-home',
-  imports: [Navbar, HeroSection, ProductCard],
+  imports: [HeroSection, ProductCard],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

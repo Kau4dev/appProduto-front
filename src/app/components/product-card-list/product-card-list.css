@@ -1,0 +1,53 @@
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  gap: 1rem;
+}
+
+.card {
+  background-color: #212529;
+  color: white;
+  margin-top: 1rem;
+  border: 1px solid #6e6e6e;
+}
+.card.disabled {
+  opacity: 0.1;
+  filter: grayscale(2);
+}
+
+.card-title {
+  color: #4476d3;
+}
+
+.list-group.list-group-flush {
+  background-color: #212529;
+}
+.list-group-item {
+  background-color: #212529;
+  color: white;
+  border: 1px solid #6e6e6e;
+}
+.bi.bi-currency-dollar {
+  margin-right: 0.1rem;
+  color: gold;
+}
+
+.bi.bi-upc {
+  margin-right: 0.1rem;
+  color: gold;
+}
+
+.btn.btn-primary {
+  border-radius: 20px;
+}
+
+.btn.btn-primary:hover {
+  background-color: #0907a5;
+  border-color: #0907a5;
+}
+.bi.bi-cart-plus {
+  margin: 0.5rem;
+}

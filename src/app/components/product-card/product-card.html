@@ -1,53 +1,25 @@
 <div class="cards-container">
-  @for(produto of primeirosProdutos; track $index) { @if(produto.estoque == 0) {
-  <div class="card disabled" style="width: 18.7rem">
-    <img
-      src="https://down-br.img.susercontent.com/file/7b902f6a5316aa5e2bcbc7d343221cc0"
-      class="card-img-top"
-      alt="..."
-    />
-    <div class="card-body">
-      <a href="#" class="card-title">{{ produto.nome }}</a>
-      <p class="card-text">{{ produto.descricao }}</p>
-      <a href="#" class="btn btn-primary"><i class="bi bi-cart-plus"></i>Carrinho</a>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">
-        <i class="bi bi-currency-dollar"></i>
-        <b>Preço:</b>
-        R$ {{ produto.preco.toFixed(2) }}
-      </li>
-      <li class="list-group-item">
-        <i class="bi bi-tag"></i><b>Desconto:</b> {{ produto.desconto }}%
-      </li>
-      <li class="list-group-item">
-        <i class="bi bi-archive"></i><b>Estoque:</b> {{ produto.estoque }} unidades
-      </li>
-    </ul>
-  </div>
-  } @else {
+  @for(produto of primeirosProdutos; track $index){
+  <div class="card mb-3" style="max-width: 540px">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img
+          src="https://down-br.img.susercontent.com/file/7b902f6a5316aa5e2bcbc7d343221cc0"
+          class="img-fluid rounded-start"
+          alt="..."
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ produto.nome }}</h5>
+          <p class="card-text">
+            {{ produto.descricao }}
+          </p>
 
-  <div class="card" style="width: 18.7rem">
-    <img
-      src="https://down-br.img.susercontent.com/file/7b902f6a5316aa5e2bcbc7d343221cc0"
-      class="card-img-top"
-      alt="..."
-    />
-    <div class="card-body">
-      <a href="#" class="card-title">{{ produto.nome }}</a>
-      <p class="card-text">{{ produto.descricao }}</p>
-      <a href="#" class="btn btn-primary"><i class="bi bi-cart-plus"></i>Carrinho</a>
+          <p class="card-text"><small>Last updated 3 mins ago</small></p>
+        </div>
+      </div>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">
-        <i class="bi bi-currency-dollar"></i>
-        <b>Preço:</b>
-        R$ {{ produto.preco.toFixed(2) }}
-      </li>
-      <li class="list-group-item">
-        <i class="bi bi-upc"></i><b>Código de barra:</b> {{ produto.estoque }}
-      </li>
-    </ul>
   </div>
-  } }
+  }
 </div>
