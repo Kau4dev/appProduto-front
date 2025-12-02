@@ -30,7 +30,7 @@
   color: white;
   border: 1px solid #6e6e6e;
 }
-.bi.bi-currency-dollar {
+.bi.bi-cash {
   margin-right: 0.1rem;
   color: gold;
 }
@@ -50,4 +50,13 @@
 }
 .bi.bi-cart-plus {
   margin: 0.5rem;
+}
+.btn.btn-secondary {
+  border-radius: 20px;
+  margin-left: 0.2rem;
+}
+
+.btn.btn-danger {
+  border-radius: 20px;
+  margin-left: 3.7rem;
 }

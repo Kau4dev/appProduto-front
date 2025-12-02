@@ -20,6 +20,7 @@ export const routes: Routes = [
     path: 'editar-produto',
     component: EditarProduto,
   },
+
   {
     path: '**',
     component: NaoEncontrado,

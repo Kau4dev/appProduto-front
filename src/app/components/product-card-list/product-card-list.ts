@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { CommonModule, CurrencyPipe } from '@angular/common';
+import { ModalConfirm } from '../modal-confirm/modal-confirm';
 
 @Component({
   selector: 'app-product-card-list',
-  imports: [],
+  imports: [RouterLink, CommonModule, CurrencyPipe, ModalConfirm],
   templateUrl: './product-card-list.html',
   styleUrl: './product-card-list.css',
 })
@@ -49,4 +52,22 @@ export class ProductCardList {
       imagem: 'https://example.com/mochila-casual.jpg',
     },
   ];
+
+  mostrarModal = false;
+  produtoSelecionado: any = null;
+
+  abrirModal(produto: any) {
+    this.produtoSelecionado = produto;
+    this.mostrarModal = true;
+  }
+
+  fecharModal() {
+    this.produtoSelecionado = null;
+    this.mostrarModal = false;
+  }
+
+  confirmarExclusao() {
+    this.produtos = this.produtos.filter((p) => p !== this.produtoSelecionado);
+    this.fecharModal();
+  }
 }
