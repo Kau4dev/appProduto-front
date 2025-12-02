@@ -17,6 +17,12 @@ img {
   color: #948e8e;
 }
 
+.navbar-nav .nav-item.active > .nav-link,
+.navbar-nav .nav-link.active,
+.navbar .nav-link.active {
+  color: #fff !important;
+}
+
 .navbar-brand {
   color: white;
 }
