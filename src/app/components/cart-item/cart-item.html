@@ -1,0 +1,21 @@
+@for(item of cartItems; track $index) {
+<div class="card">
+  <div>
+    <img
+      src="https://down-br.img.susercontent.com/file/7b902f6a5316aa5e2bcbc7d343221cc0"
+      alt="Imagem do Produto"
+      width="85px"
+      style="border-radius: 10px"
+    />
+  </div>
+
+  <div class="card-body">
+    <h5 class="card-title">{{ item.nome }}</h5>
+    <p class="card-text">Preço: {{ item.preco | currency : 'BRL' : 'R$' }}</p>
+  </div>
+
+  <button class="btn btn-delete">
+    <i class="bi bi-trash"></i>
+  </button>
+</div>
+}
