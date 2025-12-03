@@ -1,32 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, inject, computed, Signal } from '@angular/core';
+import { ProdutoService } from '../../services/produto/produto';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Produto } from '../../types/produto';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-card',
-  imports: [],
+  standalone: true,
+  imports: [CurrencyPipe],
   templateUrl: './product-card.html',
   styleUrl: './product-card.css',
 })
 export class ProductCard {
-  produtos = [
-    {
-      nome: 'Camiseta Preta',
-      descricao: 'Camiseta de algodão 100%, confortável e estilosa.',
-      preco: 49.0,
-      desconto: 10,
-      estoque: 50,
-      imagem: 'https://down-br.img.susercontent.com/file/7b902f6a5316aa5e2bcbc7d343221cc0',
-    },
-    {
-      nome: 'Calça Jeans Azul',
-      descricao: 'Calça jeans clássica, perfeita para qualquer ocasião.',
-      preco: 120.0,
-      desconto: 15,
-      estoque: 30,
-      imagem: 'https://example.com/calca-jeans-azul.jpg',
-    },
-  ];
+  private produtoService = inject(ProdutoService);
 
-  get primeirosProdutos() {
-    return this.produtos.slice(0, 4);
-  }
+  produtos: Signal<Produto[]> = toSignal(this.produtoService.listarProdutos(), {
+    initialValue: [] as Produto[],
+  });
+
+  primeirosProdutos: Signal<Produto[]> = computed(() => {
+    return this.produtos().slice(0, 4);
+  });
 }

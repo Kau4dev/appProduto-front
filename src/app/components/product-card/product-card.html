@@ -1,5 +1,5 @@
 <div class="cards-container">
-  @for(produto of primeirosProdutos; track $index){
+  @for(produto of primeirosProdutos(); track $index){
   <div class="card mb-3" style="max-width: 540px">
     <div class="row g-0">
       <div class="col-md-4">
@@ -16,7 +16,9 @@
             {{ produto.descricao }}
           </p>
 
-          <p class="card-text"><small>Last updated 3 mins ago</small></p>
+          <p class="card-text">
+            <small>{{ produto.dataCriacao }}</small>
+          </p>
         </div>
       </div>
     </div>
