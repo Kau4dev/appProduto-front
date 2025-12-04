@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal, OnInit, WritableSignal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { ModalConfirm } from '../modal-confirm/modal-confirm';
+import { ProdutoService } from '../../services/produto/produto';
+import { Produto } from '../../types/produto';
 
 @Component({
   selector: 'app-product-card-list',
@@ -9,54 +11,24 @@ import { ModalConfirm } from '../modal-confirm/modal-confirm';
   templateUrl: './product-card-list.html',
   styleUrl: './product-card-list.css',
 })
-export class ProductCardList {
-  produtos = [
-    {
-      nome: 'Camiseta Preta',
-      descricao: 'Camiseta de algodão 100%, confortável e estilosa.',
-      preco: 49.0,
-      desconto: 10,
-      estoque: 50,
-      imagem: 'https://down-br.img.susercontent.com/file/7b902f6a5316aa5e2bcbc7d343221cc0',
-    },
-    {
-      nome: 'Calça Jeans Azul',
-      descricao: 'Calça jeans clássica, perfeita para qualquer ocasião.',
-      preco: 120.0,
-      desconto: 15,
-      estoque: 30,
-      imagem: 'https://example.com/calca-jeans-azul.jpg',
-    },
-    {
-      nome: 'Tênis Esportivo',
-      descricao: 'Tênis leve e confortável para suas atividades diárias.',
-      preco: 200.0,
-      desconto: 20,
-      estoque: 20,
-      imagem: 'https://example.com/tenis-esportivo.jpg',
-    },
-    {
-      nome: 'Relógio de Pulso',
-      descricao: 'Relógio elegante com design moderno.',
-      preco: 500.0,
-      desconto: 30,
-      estoque: 0,
-      imagem: 'https://example.com/relogio-pulso.jpg',
-    },
-    {
-      nome: 'Mochila Casual',
-      descricao: 'Mochila espaçosa e resistente para o dia a dia.',
-      preco: 150.0,
-      desconto: 25,
-      estoque: 15,
-      imagem: 'https://example.com/mochila-casual.jpg',
-    },
-  ];
+export class ProductCardList implements OnInit {
+  private produtoService = inject(ProdutoService);
 
+  produtos: WritableSignal<Produto[]> = signal<Produto[]>([]);
   mostrarModal = false;
-  produtoSelecionado: any = null;
+  produtoSelecionado: Produto | null = null;
 
-  abrirModal(produto: any) {
+  ngOnInit() {
+    this.carregarProdutos();
+  }
+
+  carregarProdutos() {
+    this.produtoService.listarProdutos().subscribe({
+      next: (dados) => this.produtos.set(dados),
+      error: (erro) => console.error('Erro ao carregar', erro),
+    });
+  }
+  abrirModal(produto: Produto) {
     this.produtoSelecionado = produto;
     this.mostrarModal = true;
   }
@@ -67,7 +39,28 @@ export class ProductCardList {
   }
 
   confirmarExclusao() {
-    this.produtos = this.produtos.filter((p) => p !== this.produtoSelecionado);
-    this.fecharModal();
+    if (!this.produtoSelecionado) return;
+
+    const id = this.produtoSelecionado.id;
+
+    if (id === undefined) {
+      console.error('Erro: produto selecionado sem id');
+      alert('Erro ao excluir produto: id inválido.');
+      this.fecharModal();
+      return;
+    }
+
+    this.produtoService.deletarProduto(id).subscribe({
+      next: () => {
+        this.produtos.update((listaAtual) => listaAtual.filter((p) => p.id !== id));
+        this.fecharModal();
+        alert('Produto excluído com sucesso!');
+      },
+      error: (erro) => {
+        console.error('Erro ao excluir', erro);
+        alert('Erro ao excluir produto.');
+        this.fecharModal();
+      },
+    });
   }
 }

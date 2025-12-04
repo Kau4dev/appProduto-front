@@ -1,5 +1,5 @@
 <div class="cards-container">
-  @for(produto of produtos; track $index) {
+  @for(produto of produtos(); track $index) {
   <div class="card" style="width: 18.7rem">
     <img
       src="https://down-br.img.susercontent.com/file/7b902f6a5316aa5e2bcbc7d343221cc0"
@@ -25,7 +25,7 @@
       </li>
 
       <li class="list-group-item">
-        <i class="bi bi-upc"></i><b>Código de barra:</b> {{ produto.estoque }}
+        <i class="bi bi-upc"></i><b>Código de barra:</b> {{ produto.codigoBarras }}
       </li>
     </ul>
   </div>
