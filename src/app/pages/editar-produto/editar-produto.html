@@ -1,8 +1,10 @@
-@if(produtoSelecionado){
-<app-form-product
-  titulo="Editar Produto"
-  [produtoParaEditar]="produtoSelecionado"
-></app-form-product>
-}@else {
-<p>Carregando...</p>
-}
+<div *ngIf="produtoSelecionado; else loading">
+  <app-form-product
+    titulo="Editar Produto"
+    [produtoParaEditar]="produtoSelecionado"
+  ></app-form-product>
+</div>
+
+<ng-template #loading>
+  <p>Carregando...</p>
+</ng-template>

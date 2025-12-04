@@ -1,4 +1,4 @@
-import { Component, inject, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ProdutoService } from '../../services/produto/produto';
 import { Produto } from '../../types/produto';
@@ -6,16 +6,15 @@ import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-form-product',
-  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './form-product.html',
   styleUrl: './form-product.css',
 })
-export class FormProduct implements OnChanges {
+export class FormProduct {
   private produtoService = inject(ProdutoService);
   private location = inject(Location);
 
-  @Input() produtoParaEditar: Produto | null = null;
+  private _produtoParaEditar: Produto | null = null;
 
   @Input() titulo: string = '';
 
@@ -27,10 +26,22 @@ export class FormProduct implements OnChanges {
     preco: new FormControl(0, [Validators.required, Validators.min(0.01)]),
   });
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.produtoParaEditar) {
-      this.produtoForm.patchValue(this.produtoParaEditar);
+  @Input()
+  set produtoParaEditar(value: Produto | null) {
+    this._produtoParaEditar = value;
+    if (value) {
+      this.produtoForm.reset();
+      this.produtoForm.patchValue({
+        id: value.id ?? null,
+        nome: value.nome ?? '',
+        codigoBarras: value.codigoBarras ?? '',
+        descricao: value.descricao ?? '',
+        preco: value.preco ?? 0,
+      });
     }
+  }
+  get produtoParaEditar(): Produto | null {
+    return this._produtoParaEditar;
   }
 
   salvar() {
@@ -61,7 +72,6 @@ export class FormProduct implements OnChanges {
   private editar(produto: Produto) {
     const id = this.produtoParaEditar?.id;
     if (typeof id !== 'number') {
-      console.error('ID do produto inválido:', id);
       alert('ID do produto inválido. Não foi possível atualizar.');
       return;
     }
