@@ -10,7 +10,7 @@
       <a href="#" class="card-title">{{ produto.nome }}</a>
       <p class="card-text">{{ produto.descricao }}</p>
       <button href="#" class="btn btn-primary"><i class="bi bi-cart-plus"></i>Carrinho</button>
-      <a routerLink="/editar-produto" class="btn btn-secondary"
+      <a [routerLink]="['/editar-produto', produto.id]" class="btn btn-secondary"
         ><i class="bi bi-pencil-square"></i
       ></a>
       <button (click)="abrirModal(produto)" class="btn btn-danger">

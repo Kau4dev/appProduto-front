@@ -1,1 +1,8 @@
-<app-form-product titulo="Editar Produto"></app-form-product>
+@if(produtoSelecionado){
+<app-form-product
+  titulo="Editar Produto"
+  [produtoParaEditar]="produtoSelecionado"
+></app-form-product>
+}@else {
+<p>Carregando...</p>
+}

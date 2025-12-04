@@ -19,7 +19,7 @@ export const routes: Routes = [
     component: CriarProduto,
   },
   {
-    path: 'editar-produto',
+    path: 'editar-produto/:id',
     component: EditarProduto,
   },
 
