@@ -7,7 +7,7 @@
       alt="..."
     />
     <div class="card-body">
-      <a href="#" class="card-title">{{ produto.nome }}</a>
+      <h4 class="card-title">{{ produto.nome }}</h4>
       <p class="card-text">{{ produto.descricao }}</p>
       <button href="#" class="btn btn-primary"><i class="bi bi-cart-plus"></i>Carrinho</button>
       <a [routerLink]="['/editar-produto', produto.id]" class="btn btn-secondary"

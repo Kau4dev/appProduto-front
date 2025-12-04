@@ -17,7 +17,7 @@
           </p>
 
           <p class="card-text">
-            <small>{{ produto.dataCriacao }}</small>
+            <small>{{ produto.dataCriacao | date : 'dd/MM/yyyy HH:mm' }}</small>
           </p>
         </div>
       </div>
