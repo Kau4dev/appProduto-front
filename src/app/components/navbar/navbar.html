@@ -22,12 +22,14 @@
         </li>
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <a class="nav-link position-relative" routerLink="/carrinho"
-            >Carrinho<span
+            >Carrinho @if(carrinhoService.totalItens() > 0) {
+            <span
               class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-primary"
             >
-              99+
-              <span class="visually-hidden">mensagens não lidas</span>
+              {{ carrinhoService.totalItens() }}
+              <span class="visually-hidden">itens no carrinho</span>
             </span>
+            }
           </a>
         </li>
       </ul>

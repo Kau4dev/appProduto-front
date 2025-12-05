@@ -9,7 +9,14 @@
     <div class="card-body">
       <h4 class="card-title">{{ produto.nome }}</h4>
       <p class="card-text">{{ produto.descricao }}</p>
-      <button href="#" class="btn btn-primary"><i class="bi bi-cart-plus"></i>Carrinho</button>
+      <button
+        (click)="adicionarAoCarrinho(produto)"
+        class="btn btn-primary"
+        [disabled]="carrinhoService.produtoNoCarrinho(produto.id)"
+      >
+        <i class="bi bi-cart-plus"></i>
+        {{ carrinhoService.produtoNoCarrinho(produto.id) ? 'No Carrinho' : 'Carrinho' }}
+      </button>
       <a [routerLink]="['/editar-produto', produto.id]" class="btn btn-secondary"
         ><i class="bi bi-pencil-square"></i
       ></a>

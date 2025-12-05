@@ -4,6 +4,7 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { ModalConfirm } from '../modal-confirm/modal-confirm';
 import { ProdutoService } from '../../services/produto/produtoService';
 import { Produto } from '../../types/produto';
+import { CarrinhoService } from '../../services/carrinho/carrinhoService';
 
 @Component({
   selector: 'app-product-card-list',
@@ -13,6 +14,7 @@ import { Produto } from '../../types/produto';
 })
 export class ProductCardList implements OnInit {
   private produtoService = inject(ProdutoService);
+  carrinhoService = inject(CarrinhoService);
 
   produtos: WritableSignal<Produto[]> = signal<Produto[]>([]);
   mostrarModal = false;
@@ -36,6 +38,15 @@ export class ProductCardList implements OnInit {
   fecharModal() {
     this.produtoSelecionado = null;
     this.mostrarModal = false;
+  }
+
+  adicionarAoCarrinho(produto: Produto) {
+    const adicionado = this.carrinhoService.adicionarProduto(produto);
+    if (adicionado) {
+      alert(`${produto.nome} adicionado ao carrinho!`);
+    } else {
+      alert(`${produto.nome} já está no carrinho!`);
+    }
   }
 
   confirmarExclusao() {
