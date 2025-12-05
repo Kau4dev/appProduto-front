@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { ProdutoService } from '../../services/produto/produto';
+import { ProdutoService } from '../../services/produto/produtoService';
 import { Produto } from '../../types/produto';
 import { Location } from '@angular/common';
 
