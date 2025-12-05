@@ -1,2 +1,21 @@
-<app-cart-item></app-cart-item>
-<app-cart-summary></app-cart-summary>
+<div class="container mt-4">
+  <h2 class="mb-4">Meu Carrinho</h2>
+
+  @if(carrinhoService.itens().length === 0) {
+  <div class="alert alert-info">
+    <p>Seu carrinho está vazio.</p>
+    <a routerLink="/listar-produtos" class="btn btn-primary">Ver Produtos</a>
+  </div>
+  } @else {
+  <div class="row">
+    <div class="col-md-8">
+      @for(item of carrinhoService.itens(); track item.produto.id) {
+      <app-cart-item [item]="item"></app-cart-item>
+      }
+    </div>
+    <div class="col-md-4">
+      <app-cart-summary></app-cart-summary>
+    </div>
+  </div>
+  }
+</div>
