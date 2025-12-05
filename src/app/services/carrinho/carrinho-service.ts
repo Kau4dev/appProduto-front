@@ -1,10 +1,6 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { Produto } from '../../types/produto';
-
-export interface ItemCarrinho {
-  produto: Produto;
-  quantidade: number;
-}
+import { ItemCarrinho } from '../../types/item-carrinho';
 
 @Injectable({
   providedIn: 'root',
