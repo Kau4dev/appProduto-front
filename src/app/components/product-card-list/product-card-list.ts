@@ -2,9 +2,9 @@ import { Component, inject, signal, OnInit, WritableSignal } from '@angular/core
 import { RouterLink } from '@angular/router';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { ModalConfirm } from '../modal-confirm/modal-confirm';
-import { ProdutoService } from '../../services/produto/produtoService';
+import { ProdutoService } from '../../services/produto/produto-service';
 import { Produto } from '../../types/produto';
-import { CarrinhoService } from '../../services/carrinho/carrinhoService';
+import { CarrinhoService } from '../../services/carrinho/carrinho-service';
 
 @Component({
   selector: 'app-product-card-list',

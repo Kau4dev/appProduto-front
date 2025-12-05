@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { CarrinhoService } from '../../services/carrinho/carrinhoService';
+import { CarrinhoService } from '../../services/carrinho/carrinho-service';
 
 @Component({
   selector: 'app-cart-summary',

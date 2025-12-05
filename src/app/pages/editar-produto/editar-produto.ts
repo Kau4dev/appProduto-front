@@ -1,4 +1,4 @@
-import { ProdutoService } from '../../services/produto/produtoService';
+import { ProdutoService } from '../../services/produto/produto-service';
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormProduct } from '../../components/form-product/form-product';
 import { ActivatedRoute } from '@angular/router';

@@ -1,6 +1,6 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { ItemCarrinho, CarrinhoService } from '../../services/carrinho/carrinhoService';
+import { ItemCarrinho, CarrinhoService } from '../../services/carrinho/carrinho-service';
 import { ModalConfirm } from '../modal-confirm/modal-confirm';
 
 @Component({

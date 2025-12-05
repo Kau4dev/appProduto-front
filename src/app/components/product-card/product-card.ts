@@ -1,5 +1,5 @@
 import { Component, inject, computed, Signal } from '@angular/core';
-import { ProdutoService } from '../../services/produto/produtoService';
+import { ProdutoService } from '../../services/produto/produto-service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Produto } from '../../types/produto';
 import { CommonModule } from '@angular/common';

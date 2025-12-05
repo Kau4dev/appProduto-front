@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CartSummary } from '../../components/cart-summary/cart-summary';
 import { CartItem } from '../../components/cart-item/cart-item';
-import { CarrinhoService } from '../../services/carrinho/carrinhoService';
+import { CarrinhoService } from '../../services/carrinho/carrinho-service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
