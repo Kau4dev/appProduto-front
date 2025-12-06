@@ -2,11 +2,12 @@ import { Component, inject, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ProdutoService } from '../../services/produto/produto-service';
 import { Produto } from '../../types/produto';
-import { Location } from '@angular/common';
+import { Location, CommonModule } from '@angular/common';
+import { Alert } from '../alert/alert';
 
 @Component({
   selector: 'app-form-product',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, Alert, CommonModule],
   templateUrl: './form-product.html',
   styleUrl: './form-product.css',
 })
@@ -15,6 +16,8 @@ export class FormProduct {
   private location = inject(Location);
 
   private _produtoParaEditar: Produto | null = null;
+  mensagemAlerta: string = '';
+  tipoAlerta: 'success' | 'danger' | 'warning' | 'info' = 'info';
 
   @Input() titulo: string = '';
 
@@ -46,7 +49,7 @@ export class FormProduct {
 
   salvar() {
     if (this.produtoForm.invalid) {
-      alert('Preencha os campos obrigatórios!');
+      this.mostrarAlerta('Preencha os campos obrigatórios!', 'warning');
       return;
     }
 
@@ -62,26 +65,37 @@ export class FormProduct {
   private criar(produto: Produto) {
     this.produtoService.criarProduto(produto).subscribe({
       next: () => {
-        alert('Produto criado com sucesso!');
-        this.location.back();
+        this.mostrarAlerta('Produto criado com sucesso!', 'success');
+        setTimeout(() => this.location.back(), 2000);
       },
-      error: (erro) => console.error('Erro ao criar', erro),
+      error: (erro) => {
+        console.error('Erro ao criar', erro);
+        this.mostrarAlerta('Erro ao criar produto!', 'danger');
+      },
     });
   }
 
   private editar(produto: Produto) {
     const id = this.produtoParaEditar?.id;
     if (typeof id !== 'number') {
-      alert('ID do produto inválido. Não foi possível atualizar.');
+      this.mostrarAlerta('ID do produto inválido. Não foi possível atualizar.', 'danger');
       return;
     }
 
     this.produtoService.atualizarProduto(id, produto).subscribe({
       next: () => {
-        alert('Produto atualizado com sucesso!');
-        this.location.back();
+        this.mostrarAlerta('Produto atualizado com sucesso!', 'success');
+        setTimeout(() => this.location.back(), 2000);
       },
-      error: (erro) => console.error('Erro ao atualizar', erro),
+      error: (erro) => {
+        this.mostrarAlerta('Erro ao atualizar produto!', 'danger');
+      },
     });
+  }
+
+  mostrarAlerta(mensagem: string, tipo: 'success' | 'danger' | 'warning' | 'info' = 'info') {
+    this.mensagemAlerta = mensagem;
+    this.tipoAlerta = tipo;
+    setTimeout(() => (this.mensagemAlerta = ''), 3000);
   }
 }

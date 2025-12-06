@@ -5,10 +5,11 @@ import { ModalConfirm } from '../modal-confirm/modal-confirm';
 import { ProdutoService } from '../../services/produto/produto-service';
 import { Produto } from '../../types/produto';
 import { CarrinhoService } from '../../services/carrinho/carrinho-service';
+import { Alert } from '../alert/alert';
 
 @Component({
   selector: 'app-product-card-list',
-  imports: [RouterLink, CommonModule, CurrencyPipe, ModalConfirm],
+  imports: [RouterLink, CommonModule, CurrencyPipe, ModalConfirm, Alert],
   templateUrl: './product-card-list.html',
   styleUrl: './product-card-list.css',
 })
@@ -19,9 +20,17 @@ export class ProductCardList implements OnInit {
   produtos: WritableSignal<Produto[]> = signal<Produto[]>([]);
   mostrarModal = false;
   produtoSelecionado: Produto | null = null;
+  mensagemAlerta: string = '';
+  tipoAlerta: 'success' | 'danger' | 'warning' | 'info' = 'info';
 
   ngOnInit() {
     this.carregarProdutos();
+  }
+
+  mostrarAlerta(mensagem: string, tipo: 'success' | 'danger' | 'warning' | 'info' = 'info') {
+    this.mensagemAlerta = mensagem;
+    this.tipoAlerta = tipo;
+    setTimeout(() => (this.mensagemAlerta = ''), 3000);
   }
 
   carregarProdutos() {
@@ -43,9 +52,9 @@ export class ProductCardList implements OnInit {
   adicionarAoCarrinho(produto: Produto) {
     const adicionado = this.carrinhoService.adicionarProduto(produto);
     if (adicionado) {
-      alert(`${produto.nome} adicionado ao carrinho!`);
+      this.mostrarAlerta(`${produto.nome} adicionado ao carrinho!`, 'success');
     } else {
-      alert(`${produto.nome} já está no carrinho!`);
+      this.mostrarAlerta(`${produto.nome} já está no carrinho!`, 'warning');
     }
   }
 
@@ -56,7 +65,7 @@ export class ProductCardList implements OnInit {
 
     if (id === undefined) {
       console.error('Erro: produto selecionado sem id');
-      alert('Erro ao excluir produto: id inválido.');
+      this.mostrarAlerta('Erro ao excluir produto: id inválido.', 'danger');
       this.fecharModal();
       return;
     }
@@ -65,11 +74,11 @@ export class ProductCardList implements OnInit {
       next: () => {
         this.produtos.update((listaAtual) => listaAtual.filter((p) => p.id !== id));
         this.fecharModal();
-        alert('Produto excluído com sucesso!');
+        this.mostrarAlerta('Produto excluído com sucesso!', 'success');
       },
       error: (erro) => {
         console.error('Erro ao excluir', erro);
-        alert('Erro ao excluir produto.');
+        this.mostrarAlerta('Erro ao excluir produto.', 'danger');
         this.fecharModal();
       },
     });

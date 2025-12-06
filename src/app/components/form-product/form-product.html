@@ -51,3 +51,7 @@
     <button type="submit" class="btn btn-primary" [disabled]="produtoForm.invalid">Salvar</button>
   </form>
 </div>
+
+@if (mensagemAlerta) {
+<app-alert [mensagem]="mensagemAlerta" [tipo]="tipoAlerta"></app-alert>
+}

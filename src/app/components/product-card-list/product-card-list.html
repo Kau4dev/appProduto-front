@@ -46,4 +46,6 @@
   (confirmado)="confirmarExclusao()"
   (cancelado)="fecharModal()"
 ></app-modal-confirm>
+} @if (mensagemAlerta) {
+<app-alert [mensagem]="mensagemAlerta" [tipo]="tipoAlerta"> </app-alert>
 }

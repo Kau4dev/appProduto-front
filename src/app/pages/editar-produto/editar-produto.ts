@@ -27,7 +27,7 @@ export class EditarProduto implements OnInit {
           this.cdr.detectChanges();
         },
         error: (erro) => {
-          alert('Erro ao carregar o produto para edição.');
+          console.error('Erro ao carregar o produto para edição:', erro);
         },
       });
     }
