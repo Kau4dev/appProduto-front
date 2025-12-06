@@ -5,6 +5,9 @@ import {
   OnInit,
   WritableSignal,
   ChangeDetectorRef,
+  Output,
+  EventEmitter,
+  Input,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule, CurrencyPipe } from '@angular/common';
@@ -25,6 +28,15 @@ export class ProductCardList implements OnInit {
   carrinhoService = inject(CarrinhoService);
   private cdr = inject(ChangeDetectorRef);
 
+  @Output() produtoExcluido = new EventEmitter<number>();
+  @Input()
+  set produtosInput(value: Produto[] | undefined) {
+    if (Array.isArray(value) && value.length > 0) {
+      this.produtos.set(value);
+      this.cdr.detectChanges();
+    }
+  }
+
   produtos: WritableSignal<Produto[]> = signal<Produto[]>([]);
   mostrarModal = false;
   produtoSelecionado: Produto | null = null;
@@ -32,7 +44,9 @@ export class ProductCardList implements OnInit {
   tipoAlerta: 'success' | 'danger' | 'warning' | 'info' = 'info';
 
   ngOnInit() {
-    this.carregarProdutos();
+    if (this.produtos().length === 0) {
+      this.carregarProdutos();
+    }
   }
 
   mostrarAlerta(mensagem: string, tipo: 'success' | 'danger' | 'warning' | 'info' = 'info') {
@@ -85,6 +99,7 @@ export class ProductCardList implements OnInit {
     this.produtoService.deletarProduto(id).subscribe({
       next: () => {
         this.produtos.update((listaAtual) => listaAtual.filter((p) => p.id !== id));
+        this.produtoExcluido.emit(id);
         this.fecharModal();
         this.mostrarAlerta('Produto excluído com sucesso!', 'success');
       },
