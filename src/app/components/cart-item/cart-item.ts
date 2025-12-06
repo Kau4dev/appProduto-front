@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { CarrinhoService } from '../../services/carrinho/carrinho-service';
 import { ModalConfirm } from '../modal-confirm/modal-confirm';
@@ -12,6 +12,7 @@ import { ItemCarrinho } from '../../types/item-carrinho';
 })
 export class CartItem {
   @Input() item!: ItemCarrinho;
+  @Output() produtoRemovido = new EventEmitter<string>();
   private carrinhoService = inject(CarrinhoService);
   mostrarModal = false;
 
@@ -24,8 +25,10 @@ export class CartItem {
   }
 
   confirmarRemocao() {
+    const nomeProduto = this.item.produto.nome;
     this.carrinhoService.removerProduto(this.item.produto.id);
     this.fecharModal();
+    this.produtoRemovido.emit(nomeProduto);
   }
 
   aumentarQuantidade() {
