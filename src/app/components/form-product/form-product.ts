@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ProdutoService } from '../../services/produto/produto-service';
 import { Produto } from '../../types/produto';
@@ -14,6 +14,7 @@ import { Alert } from '../alert/alert';
 export class FormProduct {
   private produtoService = inject(ProdutoService);
   private location = inject(Location);
+  private cdr = inject(ChangeDetectorRef);
 
   private _produtoParaEditar: Produto | null = null;
   mensagemAlerta: string = '';
@@ -66,11 +67,13 @@ export class FormProduct {
     this.produtoService.criarProduto(produto).subscribe({
       next: () => {
         this.mostrarAlerta('Produto criado com sucesso!', 'success');
-        setTimeout(() => this.location.back(), 2000);
+        this.cdr.detectChanges();
+        setTimeout(() => this.location.back(), 2500);
       },
       error: (erro) => {
         console.error('Erro ao criar', erro);
         this.mostrarAlerta('Erro ao criar produto!', 'danger');
+        this.cdr.detectChanges();
       },
     });
   }
@@ -79,16 +82,19 @@ export class FormProduct {
     const id = this.produtoParaEditar?.id;
     if (typeof id !== 'number') {
       this.mostrarAlerta('ID do produto inválido. Não foi possível atualizar.', 'danger');
+      this.cdr.detectChanges();
       return;
     }
 
     this.produtoService.atualizarProduto(id, produto).subscribe({
       next: () => {
         this.mostrarAlerta('Produto atualizado com sucesso!', 'success');
-        setTimeout(() => this.location.back(), 2000);
+        this.cdr.detectChanges();
+        setTimeout(() => this.location.back(), 2500);
       },
       error: (erro) => {
         this.mostrarAlerta('Erro ao atualizar produto!', 'danger');
+        this.cdr.detectChanges();
       },
     });
   }
@@ -96,6 +102,10 @@ export class FormProduct {
   mostrarAlerta(mensagem: string, tipo: 'success' | 'danger' | 'warning' | 'info' = 'info') {
     this.mensagemAlerta = mensagem;
     this.tipoAlerta = tipo;
-    setTimeout(() => (this.mensagemAlerta = ''), 3000);
+    this.cdr.detectChanges();
+    setTimeout(() => {
+      this.mensagemAlerta = '';
+      this.cdr.detectChanges();
+    }, 3000);
   }
 }

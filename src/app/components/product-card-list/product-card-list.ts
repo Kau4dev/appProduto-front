@@ -1,4 +1,11 @@
-import { Component, inject, signal, OnInit, WritableSignal } from '@angular/core';
+import {
+  Component,
+  inject,
+  signal,
+  OnInit,
+  WritableSignal,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { ModalConfirm } from '../modal-confirm/modal-confirm';
@@ -16,6 +23,7 @@ import { Alert } from '../alert/alert';
 export class ProductCardList implements OnInit {
   private produtoService = inject(ProdutoService);
   carrinhoService = inject(CarrinhoService);
+  private cdr = inject(ChangeDetectorRef);
 
   produtos: WritableSignal<Produto[]> = signal<Produto[]>([]);
   mostrarModal = false;
@@ -30,7 +38,11 @@ export class ProductCardList implements OnInit {
   mostrarAlerta(mensagem: string, tipo: 'success' | 'danger' | 'warning' | 'info' = 'info') {
     this.mensagemAlerta = mensagem;
     this.tipoAlerta = tipo;
-    setTimeout(() => (this.mensagemAlerta = ''), 3000);
+    this.cdr.detectChanges();
+    setTimeout(() => {
+      this.mensagemAlerta = '';
+      this.cdr.detectChanges();
+    }, 3000);
   }
 
   carregarProdutos() {
