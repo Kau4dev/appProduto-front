@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">
+      <img src="/assets/Minsait-logo.png" alt="Minsait Logo" />Minsait</a
+    >
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" routerLink="/listar-produtos"> Produtos</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link position-relative" routerLink="/carrinho"
+            >Carrinho @if(carrinhoService.totalItens() > 0) {
+            <span
+              class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-primary"
+            >
+              {{ carrinhoService.totalItens() }}
+              <span class="visually-hidden">itens no carrinho</span>
+            </span>
+            }
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

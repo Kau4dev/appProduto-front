@@ -1,0 +1,16 @@
+:host {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 9999;
+  max-width: 400px;
+}
+
+.alert {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bi {
+  width: 1.5em;
+  height: 1.5em;
+}

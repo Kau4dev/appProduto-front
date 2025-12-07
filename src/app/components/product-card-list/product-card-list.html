@@ -1,0 +1,51 @@
+<div class="cards-container">
+  @for(produto of produtos(); track $index) {
+  <div class="card" style="width: 18.7rem">
+    <img
+      src="https://down-br.img.susercontent.com/file/7b902f6a5316aa5e2bcbc7d343221cc0"
+      class="card-img-top"
+      alt="..."
+    />
+    <div class="card-body">
+      <h4 class="card-title">{{ produto.nome }}</h4>
+      <p class="card-text">{{ produto.descricao }}</p>
+      <button
+        (click)="adicionarAoCarrinho(produto)"
+        class="btn btn-primary"
+        [disabled]="carrinhoService.produtoNoCarrinho(produto.id)"
+      >
+        <i class="bi bi-cart-plus"></i>
+        {{ carrinhoService.produtoNoCarrinho(produto.id) ? 'No Carrinho' : 'Carrinho' }}
+      </button>
+      <a [routerLink]="['/editar-produto', produto.id]" class="btn btn-secondary"
+        ><i class="bi bi-pencil-square"></i
+      ></a>
+      <button (click)="abrirModal(produto)" class="btn btn-danger">
+        <i class="bi bi-trash"></i>
+      </button>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <i class="bi bi-cash"></i>
+        <b>Preço:</b>
+        {{ produto.preco | currency : 'BRL' : 'R$' }}
+      </li>
+
+      <li class="list-group-item">
+        <i class="bi bi-upc"></i><b>Código de barra:</b> {{ produto.codigoBarras }}
+      </li>
+    </ul>
+  </div>
+  }
+</div>
+
+@if (mostrarModal) {
+<app-modal-confirm
+  titulo="Excluir Produto"
+  [mensagem]="'Tem certeza que deseja excluir ' + (produtoSelecionado?.nome ?? 'este item') + '?'"
+  (confirmado)="confirmarExclusao()"
+  (cancelado)="fecharModal()"
+></app-modal-confirm>
+} @if (mensagemAlerta) {
+<app-alert [mensagem]="mensagemAlerta" [tipo]="tipoAlerta"> </app-alert>
+}

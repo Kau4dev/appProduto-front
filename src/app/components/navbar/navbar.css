@@ -1,0 +1,36 @@
+.navbar.navbar-expand-lg {
+  padding-top: 0%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+img {
+  height: 40px;
+  width: 40px;
+  margin-right: 0.5rem;
+}
+.container-fluid {
+  background-color: #2b2c36;
+  border-bottom: solid 5px #948e8e;
+}
+
+.nav-link {
+  color: #948e8e;
+}
+
+.navbar-nav .nav-item.active > .nav-link,
+.navbar-nav .nav-link.active,
+.navbar .nav-link.active {
+  color: #fff !important;
+}
+
+.navbar-brand {
+  color: white;
+}
+
+.navbar-toggler {
+  color: #a39c9c;
+}
+
+.navbar-toggler-icon {
+  color: #fff;
+}

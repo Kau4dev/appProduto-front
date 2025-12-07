@@ -1,0 +1,8 @@
+<div class="card">
+  <div class="card-body">
+    <h3>Total: {{ carrinhoService.valorTotal() | currency : 'BRL' : 'R$' }}</h3>
+  </div>
+  <button type="button" class="btn btn-success" (click)="finalizarCompra()">
+    Finalizar Compra
+  </button>
+</div>
